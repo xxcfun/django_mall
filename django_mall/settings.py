@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'mall.apps.MallConfig',  # 商品模块
     'mine.apps.MineConfig',  # 个人模块
     'system.apps.SystemConfig',  # 系统模块
-    'oauth.apps.OauthConfig'  # 学习测试用，正式做项目的时候删掉
 ]
 
 MIDDLEWARE = [

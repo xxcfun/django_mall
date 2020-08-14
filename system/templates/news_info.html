@@ -1,19 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>新闻详情</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
-    />
-    <meta name="description" content="" />
-    <link rel="stylesheet" href="lib/weui.min.css" />
-    <link rel="stylesheet" href="css/jquery-weui.css" />
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body ontouchstart class="container">
+{% extends 'base.html' %}
+{% block title %}
+  <title>新闻详情</title>
+{% endblock %}
+{% block container %}
     <!--主体-->
     <header class="wy-header">
       <div class="wy-header-icon-back"><span></span></div>
@@ -21,29 +10,20 @@
     </header>
     <div class="weui-content">
       <article class="weui-article">
-        <h1>热烈祝贺蓝之蓝股份上市</h1>
-        <h3 class="wy-news-time">2016-02-06</h3>
+        <h1>{{ new_obj.title }}</h1>
+        <h3 class="wy-news-time">{{ new_obj.created_at|date }}</h3>
         <section class="wy-news-info">
           <p>
-            热烈祝贺蓝之蓝股份上市热烈祝贺蓝之蓝股份上市热烈祝贺蓝之蓝股份上市热烈祝贺蓝之蓝股份上市热烈祝贺蓝之蓝股份上市热烈祝贺蓝之蓝股份上市热烈祝贺蓝之蓝股份上市
+            {{ new_obj.content|safe }}
           </p>
           <p>
-            <img src="upload/ban1.jpg" alt="" />
-            <img src="upload/ban2.jpg" alt="" />
+            <img src="/static/upload/ban1.jpg" alt="" />
+            <img src="/static/upload/ban2.jpg" alt="" />
           </p>
         </section>
       </article>
     </div>
-
-    <script src="lib/jquery-2.1.4.js"></script>
-    <script src="lib/fastclick.js"></script>
-    <script type="text/javascript" src="js/jquery.Spinner.js"></script>
-    <script>
-      $(function() {
-        FastClick.attach(document.body);
-      });
-    </script>
-
-    <script src="js/jquery-weui.js"></script>
-  </body>
-</html>
+{% endblock %}
+{% block footer %}
+    <script type="text/javascript" src="/static/js/jquery.Spinner.js"></script>
+{% endblock %}

@@ -1,19 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
+{% extends 'base.html' %}
+{% block title %}
     <title>新闻列表</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
-    />
-    <meta name="description" content="" />
-    <link rel="stylesheet" href="lib/weui.min.css" />
-    <link rel="stylesheet" href="css/jquery-weui.css" />
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body ontouchstart class="container">
+{% endblock %}
+{% block container %}
     <!--主体-->
     <header class="wy-header">
       <div class="wy-header-icon-back"><span></span></div>
@@ -21,60 +10,17 @@
     </header>
     <div class="weui-content">
       <div class="weui-cells wy-news-list">
-        <a class="weui-cell weui-cell_access" href="news_info.html">
+        {% for item in news_list %}
+        <a class="weui-cell weui-cell_access" href="{% url 'system:news_detail' item.pk %}">
           <div class="weui-cell__bd">
-            <p>热烈祝积分商城成功上线</p>
+            <p>{{ item.title }}</p>
           </div>
           <div class="weui-cell__ft"></div>
         </a>
-        <a class="weui-cell weui-cell_access" href="news_info.html">
-          <div class="weui-cell__bd">
-            <p>热烈祝贺蓝之蓝股份成功上市</p>
-          </div>
-          <div class="weui-cell__ft"></div>
-        </a>
-        <a class="weui-cell weui-cell_access" href="news_info.html">
-          <div class="weui-cell__bd">
-            <p>热烈祝积分商城成功上线</p>
-          </div>
-          <div class="weui-cell__ft"></div>
-        </a>
-        <a class="weui-cell weui-cell_access" href="news_info.html">
-          <div class="weui-cell__bd">
-            <p>热烈祝贺蓝之蓝股份成功上市</p>
-          </div>
-          <div class="weui-cell__ft"></div>
-        </a>
-        <a class="weui-cell weui-cell_access" href="news_info.html">
-          <div class="weui-cell__bd">
-            <p>热烈祝贺蓝之蓝股份成功上市</p>
-          </div>
-          <div class="weui-cell__ft"></div>
-        </a>
-        <a class="weui-cell weui-cell_access" href="news_info.html">
-          <div class="weui-cell__bd">
-            <p>热烈祝积分商城成功上线</p>
-          </div>
-          <div class="weui-cell__ft"></div>
-        </a>
-        <a class="weui-cell weui-cell_access" href="news_info.html">
-          <div class="weui-cell__bd">
-            <p>热烈祝贺蓝之蓝股份成功上市</p>
-          </div>
-          <div class="weui-cell__ft"></div>
-        </a>
+        {% endfor %}
       </div>
     </div>
-
-    <script src="lib/jquery-2.1.4.js"></script>
-    <script src="lib/fastclick.js"></script>
-    <script type="text/javascript" src="js/jquery.Spinner.js"></script>
-    <script>
-      $(function() {
-        FastClick.attach(document.body);
-      });
-    </script>
-
-    <script src="js/jquery-weui.js"></script>
-  </body>
-</html>
+{% endblock %}
+{% block footer %}
+    <script type="text/javascript" src="/static/js/jquery.Spinner.js"></script>
+{% endblock %}

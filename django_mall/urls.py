@@ -19,11 +19,12 @@ from django.contrib import admin
 from django_mall import views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls)
-    , url(r'^$', views.index, name='index')
+    url(r'^admin/', admin.site.urls),
+    url(r'^$', views.index, name='index'),
     # 商品部分
-    , url(r'^mall/', include('mall.urls', namespace='mall'))
-    , url(r'^oauth/', include('oauth.urls', namespace='oauth'))
+    url(r'^mall/', include('mall.urls', namespace='mall')),
+    # 系统模块
+    url(r'^sys/', include('system.urls', namespace='system')),
 ]
 
 urlpatterns += [

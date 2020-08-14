@@ -93,15 +93,15 @@
         <div class="swiper-wrapper">
           {% for item in news_list %}
           <div class="swiper-slide">
-            <a href="news_info.html"
-            >{{ item.title }}</a
-            >
+            <a href="{% url 'system:news_detail' item.pk %}">
+              {{ item.title }}
+            </a>
           </div>
           {% endfor %}
         </div>
         <div class="swiper-pagination"></div>
       </div>
-      <a href="news_list.html" class="newsmore"
+      <a href="{% url 'system:news_list' %}" class="newsmore"
       ><i class="news-icon-more"></i
       ></a>
     </div>
