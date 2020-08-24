@@ -25,6 +25,8 @@ urlpatterns = [
     url(r'^mall/', include('mall.urls', namespace='mall')),
     # 系统模块
     url(r'^sys/', include('system.urls', namespace='system')),
+    # 用户账户模块
+    url(r'^accounts/', include('accounts.urls', namespace='accounts')),
 ]
 
 urlpatterns += [

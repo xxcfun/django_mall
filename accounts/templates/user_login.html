@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  <title>登录</title>
+{% endblock %}
+
+{% block container %}
+    <!--主体-->
+    <div class="login-box" style="background: #0d0d0d">
+      <div class="lg-title">欢迎登录积分商城</div>
+      <div class="login-form">
+        <form action="#">
+          <div class="login-user-name common-div">
+            <span class="eamil-icon common-icon">
+              <img src="/static/images/eamil.png" />
+            </span>
+            <input
+              type="email"
+              name="username"
+              value=""
+              placeholder="请输入您的手机号"
+            />
+          </div>
+          <div class="login-user-pasw common-div">
+            <span class="pasw-icon common-icon">
+              <img src="/static/images/password.png" />
+            </span>
+            <input
+              type="password"
+              name="password"
+              value=""
+              placeholder="请输入您的密码"
+            />
+          </div>
+          <a href="javascript:;" class="login-btn common-div">登录</a>
+          <a href="javascript:;" class="login-oth-btn common-div">微信登录</a>
+          <a href="javascript:;" class="login-oth-btn common-div">QQ登录</a>
+        </form>
+      </div>
+      <div class="forgets">
+        <a href="pwd_change.html">忘记密码？</a>
+        <a href="user_register.html">免费注册</a>
+      </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+  <script type="text/javascript" src="/static/js/jquery.Spinner.js"></script>
+{% endblock %}

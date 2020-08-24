@@ -63,3 +63,6 @@ class ImageFile(models.Model):
 
     class Meta:
         db_table = 'system_images'
+
+
+

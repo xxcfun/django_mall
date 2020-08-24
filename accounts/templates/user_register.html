@@ -1,19 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>手机注册</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
-    />
-    <meta name="description" content="" />
-    <link rel="stylesheet" href="lib/weui.min.css" />
-    <link rel="stylesheet" href="css/jquery-weui.css" />
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body ontouchstart class="container">
+{% extends 'base.html' %}
+
+{% block title %}
+  <title>手机注册</title>
+{% endblock %}
+
+{% block container %}
     <!--主体-->
     <header class="wy-header">
       <div class="wy-header-icon-back"><span></span></div>
@@ -44,7 +35,7 @@
             />
           </div>
           <div class="weui-cell__ft">
-            <img class="weui-vcode-img" src="./images/vcode.jpg" />
+            <img class="weui-vcode-img" src="/static/images/vcode.jpg" />
           </div>
         </div>
         <div class="weui-cell">
@@ -90,16 +81,9 @@
       </div>
       <div class="weui-cells__tips t-c font-12">登陆账号为您输入的手机号码</div>
     </div>
+{% endblock %}
 
-    <script src="lib/jquery-2.1.4.js"></script>
-    <script src="lib/fastclick.js"></script>
-    <script type="text/javascript" src="js/jquery.Spinner.js"></script>
-    <script>
-      $(function() {
-        FastClick.attach(document.body);
-      });
-    </script>
+{% block footer %}
+  <script type="text/javascript" src="/static/js/jquery.Spinner.js"></script>
+{% endblock %}
 
-    <script src="js/jquery-weui.js"></script>
-  </body>
-</html>
