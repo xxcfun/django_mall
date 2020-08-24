@@ -3,7 +3,7 @@ from datetime import datetime
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, render
 
-from mall.models import Slider, News
+from system.models import Slider, News
 from utils import constants
 
 

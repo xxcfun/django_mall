@@ -10,7 +10,7 @@
     </header>
     <div class="weui-content">
       <div class="weui-cells wy-news-list">
-        {% for item in news_list %}
+        {% for item in page_data.object_list %}
         <a class="weui-cell weui-cell_access" href="{% url 'system:news_detail' item.pk %}">
           <div class="weui-cell__bd">
             <p>{{ item.title }}</p>
@@ -19,6 +19,25 @@
         </a>
         {% endfor %}
       </div>
+
+      <div class="weui-footer">
+        <p class="weui-footer__link">
+          {% if page_data.has_previous %}
+          <a class="weui-footer__link" href="{% url 'system:news_list' %}?page={{ page_data.previous_page_number }}">上一页</a>
+        {% else %}
+          <a class="weui-footer__link" href="javascript:;" onclick="window.alert('没有上一页了')">上一页</a>
+        {% endif %}
+        {% if page_data.has_next %}
+          <a class="weui-footer__link" href="{% url 'system:news_list' %}?page={{ page_data.next_page_number }}">下一页</a>
+        {% else %}
+          <a class="weui-footer__link" href="javascript:;" onclick="window.alert('没有下一页了')">下一页</a>
+        {% endif %}
+        </p>
+        <p class="weui-footer__text">
+          当前第{{ page_data.number }}页，总共有{{ page_data.paginator.num_pages }}页
+        </p>
+      </div>
+
     </div>
 {% endblock %}
 {% block footer %}

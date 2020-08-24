@@ -11,7 +11,7 @@
     <div class="weui-content">
       <article class="weui-article">
         <h1>{{ new_obj.title }}</h1>
-        <h3 class="wy-news-time">{{ new_obj.created_at|date }}</h3>
+        <h3 class="wy-news-time">{{ new_obj.created_at|date }} 浏览次数：{{ new_obj.view_count }}</h3>
         <section class="wy-news-info">
           <p>
             {{ new_obj.content|safe }}
