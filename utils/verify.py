@@ -94,4 +94,10 @@ class VerifyCode(object):
         # 1.转变大小写
         code = str(code).lower()
         vcode = self.dj_request.session.get(self.session_key, '')
-        return vcode.lower == code
+        print(vcode.lower() == code)
+        return vcode.lower() == code
+
+
+if __name__ == '__main__':
+    client = VerifyCode(None)
+    client.gen_code()

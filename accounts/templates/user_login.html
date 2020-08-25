@@ -2,25 +2,33 @@
 
 {% block title %}
   <title>登录</title>
+  <style type="text/css">
+  body {
+    background: #323542;
+  }
+  </style>
 {% endblock %}
 
 {% block container %}
     <!--主体-->
-    <div class="login-box" style="background: #0d0d0d">
+    <div class="login-box">
       <div class="lg-title">欢迎登录积分商城</div>
       <div class="login-form">
-        <form action="#">
+        <form action="." method="post">
+          <!--手机号-->
           <div class="login-user-name common-div">
             <span class="eamil-icon common-icon">
               <img src="/static/images/eamil.png" />
             </span>
             <input
-              type="email"
+              type="text"
               name="username"
-              value=""
+              value="{{ form.username.value|default_if_none:'' }}"
               placeholder="请输入您的手机号"
             />
           </div>
+          {{ form.username.errors }}
+          <!--密码-->
           <div class="login-user-pasw common-div">
             <span class="pasw-icon common-icon">
               <img src="/static/images/password.png" />
@@ -32,7 +40,21 @@
               placeholder="请输入您的密码"
             />
           </div>
-          <a href="javascript:;" class="login-btn common-div">登录</a>
+          {{ form.password.errors }}
+          <!--验证码-->
+          <div class="login-user-vcode common-div">
+            <div class="weui-cell__bd">
+              <input type="text" name="verify_code" value="" placeholder="请输入您的验证码">
+            </div>
+            <div class="weui-cell__ft">
+              <img class="verify-code-img" style="width: 100%; height: 98%"
+                   src="{% url 'system:verify_code' %}"
+                   data-src="{% url 'system:verify_code' %}" alt="验证码">
+            </div>
+          </div>
+          {{ form.verify_code.errors }}
+          {{ form.non_field_errors }}
+          <button class="login-btn common-div" type="submit">登录</button>
           <a href="javascript:;" class="login-oth-btn common-div">微信登录</a>
           <a href="javascript:;" class="login-oth-btn common-div">QQ登录</a>
         </form>
@@ -46,4 +68,9 @@
 
 {% block footer %}
   <script type="text/javascript" src="/static/js/jquery.Spinner.js"></script>
+  <script>
+    $('.verify-code-img').click(function () {
+      $(this).attr('src', $(this).attr('data-src') + '?t=' + new Date().getTime())
+    })
+  </script>
 {% endblock %}
