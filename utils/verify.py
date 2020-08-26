@@ -82,8 +82,8 @@ class VerifyCode(object):
         im.save(buf, 'gif')
         return HttpResponse(buf.getvalue(), 'image/gif')
 
-
     def _get_vcode(self):
+        """生成验证码的四位字符"""
         random_str = 'QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvb0123456789'
         code_list = random.sample(list(random_str), self.code_len)
         code = ''.join(code_list)
@@ -94,7 +94,6 @@ class VerifyCode(object):
         # 1.转变大小写
         code = str(code).lower()
         vcode = self.dj_request.session.get(self.session_key, '')
-        print(vcode.lower() == code)
         return vcode.lower() == code
 
 
