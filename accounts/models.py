@@ -1,13 +1,14 @@
 from django.db import models
-
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 
-class User(models.Model):
+# class User(models.Model):
+class User(AbstractUser):
     """用户的基础信息"""
-    username = models.CharField('用户名', max_length=64)
+    # username = models.CharField('用户名', max_length=64)
+    # password = models.CharField('密码', max_length=255)
     nickname = models.CharField('昵称', max_length=255)
-    password = models.CharField('密码', max_length=255)
     avatar = models.ImageField('用户头像', upload_to='avatar', null=True, blank=True)
     integral = models.IntegerField('用户的积分', default=0)
     level = models.SmallIntegerField('用户级别')

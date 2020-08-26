@@ -142,3 +142,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+# 使用自定义的用户模型
+AUTH_USER_MODEL = 'accounts.User'

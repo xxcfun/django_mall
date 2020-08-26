@@ -3,9 +3,7 @@ import re
 from django import forms
 from django.contrib.auth import authenticate, login
 
-from django.contrib.auth.models import User
-from django.http import request
-
+from accounts.models import User
 from utils.verify import VerifyCode
 
 
@@ -67,7 +65,7 @@ class UserLoginForm(forms.Form):
 class UserRegistForm(forms.Form):
     """用户注册表单"""
     username = forms.CharField(label='用户名', max_length=64)
-    # nickname = forms.CharField(label='昵称', max_length=64)
+    nickname = forms.CharField(label='昵称', max_length=64)
     password = forms.CharField(label='密码', max_length=64, widget=forms.PasswordInput)
     password_repeat = forms.CharField(label='重复密码', max_length=64, widget=forms.PasswordInput)
     verify_code = forms.CharField(label='验证码', max_length=4)
@@ -108,7 +106,8 @@ class UserRegistForm(forms.Form):
         data = self.cleaned_data
         # 1.创建用户
         User.objects.create_user(username=data['username'],
-                                 password=data['password'])
+                                 password=data['password'],
+                                 level=0)
         # 2.自动登录
         user = authenticate(username=data['username'],
                             password=data['password'])

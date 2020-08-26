@@ -18,13 +18,34 @@
             <label class="weui-label wy-lab">手机号</label>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" type="tel" name="username" placeholder="请输入手机号" />
+            <input class="weui-input"
+                   type="tel"
+                   name="username"
+                   value="{{ form.username.value|default_if_none:'' }}"
+                   placeholder="请输入手机号"
+            />
           </div>
           <div class="weui-cell__ft">
             <button class="weui-vcode-btn">获取验证码</button>
           </div>
         </div>
         {{ form.username.errors }}
+        <!--昵称-->
+        <div class="weui-cell">
+          <div class="weui-cell__hd">
+            <label class="weui-label wy-lab">昵称</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input
+              class="weui-input"
+              type="text"
+              name="nickname"
+              value="{{ form.nickname.value|default_if_none:'' }}"
+              placeholder="请输入昵称"
+            />
+          </div>
+        </div>
+        {{ form.nickname.errors }}
         <!--验证码-->
         <div class="weui-cell weui-cell_vcode">
           <div class="weui-cell__hd">
@@ -34,7 +55,7 @@
             <input
               class="weui-input"
               type="text"
-              name="verify-code"
+              name="verify_code"
               placeholder="请输入验证码"
             />
           </div>
@@ -51,7 +72,7 @@
           <div class="weui-cell__bd">
             <input
               class="weui-input"
-              type="text"
+              type="password"
               name="password"
               placeholder="请输入新密码"
             />
@@ -66,7 +87,7 @@
           <div class="weui-cell__bd">
             <input
               class="weui-input"
-              type="text"
+              type="password"
               name="password_repeat"
               placeholder="请再次输入新密码"
             />
