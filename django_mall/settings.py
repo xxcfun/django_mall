@@ -143,6 +143,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
+# 自己上传的图片
+MEDIA_ROOT = os.path.join(BASE_DIR, 'medias')
+MEDIA_URL = '/medias/'
+
 # 使用自定义的用户模型
 AUTH_USER_MODEL = 'accounts.User'
 LOGIN_URL = '/accounts/user/login/'

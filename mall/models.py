@@ -52,7 +52,7 @@ class Product(models.Model):
 
     price = models.IntegerField('兑换价格（积分兑换）')
     origin_price = models.FloatField('原价')
-    img = models.ImageField('主图', upload_to='product')
+    img = models.ImageField('主图', upload_to='%Y%m/product')
     buy_link = models.CharField('购买链接', max_length=256, null=True, blank=True)
     reorder = models.SmallIntegerField('排序', default=0)
     status = models.SmallIntegerField('商品状态', default=constants.PRODUCT_STATUS_LOST,
