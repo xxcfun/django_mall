@@ -1,19 +1,24 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from accounts.forms import UserLoginForm, UserRegistForm, UserAddressForm
 from accounts.models import UserAddress
+from utils.verify import VerifyCode
 
 
 def user_login(request):
     """用户登录"""
+    # 如果登录是从其他页面跳转过来的，会带next参数，如果有next参数，登录完成后，
+    # 需要跳转到next所对应的地址，否则，跳转到首页上去
+    next_url = request.GET.get('next', 'index')
     # 第一次访问url get展示表单，供用户输入
     # 第二次访问url post
     if request.method == 'POST':
         form = UserLoginForm(request=request, data=request.POST)
-        # client = VerifyCode(request)
-        # code = request.POST.get('vcode', None)
-        # rest = client.validate_code(code)
+        client = VerifyCode(request)
+        code = request.POST.get('vcode', None)
+        rest = client.validate_code(code)
         # 表单是否通过了验证
         if form.is_valid():
             # 执行登录
@@ -31,13 +36,15 @@ def user_login(request):
             if user is not None:
                 login(request, user)
                 # 登录后的跳转
-                return redirect('index')
+
+                return redirect(next_url)
         else:
             print(form.errors)
     else:
         form = UserLoginForm(request)
     return render(request, 'user_login.html', {
-        'form': form
+        'form': form,
+        'next_url': next_url
     })
 
 
@@ -64,6 +71,7 @@ def user_register(request):
     })
 
 
+@login_required
 def address_list(request):
     """地址列表"""
     my_addr_list = UserAddress.objects.filter(user=request.user, is_valid=True)
@@ -72,6 +80,7 @@ def address_list(request):
     })
 
 
+@login_required()
 def address_edit(request, pk):
     """地址新增或者是编辑"""
     addr = None

@@ -145,3 +145,4 @@ STATICFILES_DIRS = [
 
 # 使用自定义的用户模型
 AUTH_USER_MODEL = 'accounts.User'
+LOGIN_URL = '/accounts/user/login/'
