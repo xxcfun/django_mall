@@ -11,13 +11,14 @@
   <!--顶部搜索-->
   <header class="weui-header">
     <div class="weui-search-bar" id="searchBar">
-      <form class="weui-search-bar__form">
+      <form class="weui-search-bar__form" method="get" action="{% url 'mall:product_list' %}">
         <div class="weui-search-bar__box">
           <i class="weui-icon-search"></i>
           <input
                   type="search"
                   class="weui-search-bar__input"
                   id="searchInput"
+                  name="name"
                   placeholder="搜索您想要的商品"
                   required
           />
