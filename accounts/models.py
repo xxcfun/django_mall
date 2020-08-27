@@ -61,6 +61,14 @@ class UserAddress(models.Model):
         db_table = 'accounts_user_address'
         ordering = ['is_default', '-updated_at']
 
+    def get_phone_format(self):
+        """格式化手机号码显示"""
+        return self.phone[0:3] + '****' + self.phone[7:]
+
+    def get_region_format(self):
+        """省市区"""
+        return '{self.province} {self.city} {self.area}'.format(self=self)
+
 
 class LoginRecord(models.Model):
     """用户的登录历史"""

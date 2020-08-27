@@ -1,6 +1,8 @@
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render, redirect
-from accounts.forms import UserLoginForm, UserRegistForm
+from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from accounts.forms import UserLoginForm, UserRegistForm, UserAddressForm
+from accounts.models import UserAddress
 
 
 def user_login(request):
@@ -60,3 +62,39 @@ def user_register(request):
     return render(request, 'user_register.html', {
         'form': form
     })
+
+
+def address_list(request):
+    """地址列表"""
+    my_addr_list = UserAddress.objects.filter(user=request.user, is_valid=True)
+    return render(request, 'address_list.html', {
+        'my_addr_list': my_addr_list
+    })
+
+
+def address_edit(request, pk):
+    """地址新增或者是编辑"""
+    addr = None
+    initial = {}
+    # 如果pk是数字，则表示修改
+    if pk.isdigit():  # isdigit() 检测字符串是否只有数字组成
+        addr = get_object_or_404(UserAddress, pk=pk, user=request.user, is_valid=True)
+        initial['region'] = addr.get_region_format()
+    if request.method == 'POST':
+        form = UserAddressForm(request=request, data=request.POST, initial=initial, instance=addr)
+        if form.is_valid():
+            form.save()
+            return redirect('accounts:address_list')
+    else:
+        form = UserAddressForm(request=request, instance=addr, initial=initial)
+    return render(request, 'address_edit.html', {
+        'form': form
+    })
+
+
+def address_delete(request, pk):
+    """删除地址"""
+    addr = get_object_or_404(UserAddress, pk=pk, user=request.user, is_valid=True)
+    addr.is_valid = False
+    addr.save()
+    return HttpResponse('ok')
