@@ -11,10 +11,12 @@ class User(AbstractUser):
     nickname = models.CharField('昵称', max_length=255)
     avatar = models.ImageField('用户头像', upload_to='avatar', null=True, blank=True)
     integral = models.IntegerField('用户的积分', default=0)
-    level = models.SmallIntegerField('用户级别')
+    level = models.SmallIntegerField('用户级别', null=True, blank=True)
 
     class Meta:
         db_table = 'accounts_user'
+        verbose_name = '用户基础信息'
+        verbose_name_plural = '用户基础信息'
 
 
 class UserProfile(models.Model):
@@ -37,6 +39,8 @@ class UserProfile(models.Model):
 
     class Meta:
         db_table = 'accounts_user_profile'
+        verbose_name = '用户详细信息'
+        verbose_name_plural = '用户详细信息'
 
 
 class UserAddress(models.Model):
@@ -60,6 +64,8 @@ class UserAddress(models.Model):
     class Meta:
         db_table = 'accounts_user_address'
         ordering = ['is_default', '-updated_at']
+        verbose_name = '用户地址信息'
+        verbose_name_plural = '用户地址信息'
 
     def get_phone_format(self):
         """格式化手机号码显示"""
@@ -82,6 +88,8 @@ class LoginRecord(models.Model):
 
     class Meta:
         db_table = 'accounts_login_record'
+        verbose_name = '用户登录历史信息'
+        verbose_name_plural = '用户登录历史信息'
 
 
 class PasswdChangeLog(models.Model):

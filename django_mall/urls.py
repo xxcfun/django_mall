@@ -17,11 +17,19 @@ from django.conf import settings
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
-
 from django_mall import views
+
+import xadmin
+# xadmin.autodiscover()
+#
+# # version模块自动注册需要版本控制的Model
+# from xadmin.plugins import xversion
+# xversion.register_models()
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    # xadmin的配置
+    url(r'xadmin/', xadmin.site.urls),
     url(r'^$', views.index, name='index'),
     # 商品部分
     url(r'^mall/', include('mall.urls', namespace='mall')),

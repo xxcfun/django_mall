@@ -44,16 +44,15 @@ class Product(models.Model):
     """商品"""
     uid = models.UUIDField('商品ID', default=uuid.uuid4, editable=False)
     name = models.CharField('商品名称', max_length=128)
-    desc = models.CharField('简单描述', max_length=256, null=True, blank=True)
+    desc = models.CharField('简单描述', max_length=255, null=True, blank=True)
     content = models.TextField('商品描述')
     types = models.SmallIntegerField('商品类型',
                                      choices=constants.PRODUCT_TYPES_CHOICES,
                                      default=constants.PRODUCT_TYPE_ACTUAL)
-
     price = models.IntegerField('兑换价格（积分兑换）')
     origin_price = models.FloatField('原价')
     img = models.ImageField('主图', upload_to='%Y%m/product')
-    buy_link = models.CharField('购买链接', max_length=256, null=True, blank=True)
+    buy_link = models.CharField('购买链接', max_length=255, null=True, blank=True)
     reorder = models.SmallIntegerField('排序', default=0)
     status = models.SmallIntegerField('商品状态', default=constants.PRODUCT_STATUS_LOST,
                                       choices=constants.PRODUCT_STATUS_CHOICES)
@@ -75,3 +74,8 @@ class Product(models.Model):
     class Meta:
         db_table = 'product'
         ordering = ['-reorder']
+        verbose_name = '商品信息'
+        verbose_name_plural = '商品信息'
+
+    def __str__(self):
+        return self.name

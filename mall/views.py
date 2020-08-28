@@ -28,7 +28,7 @@ def product_detail(request, template_name='product_detail.html'):
 class ProductList(ListView):
     """商品列表"""
     # 每页放多少条数据
-    paginate_by = 5
+    paginate_by = 6
     # 模板位置
     template_name = 'product_list.html'
 

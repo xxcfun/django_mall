@@ -13,8 +13,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'xadmin',
+    'crispy_forms',
+    # 'reversion',
     'accounts.apps.AccountsConfig',  # 用户账户模块
     'mall.apps.MallConfig',  # 商品模块
     'mine.apps.MineConfig',  # 个人模块
@@ -69,19 +72,6 @@ TEMPLATES = [
             ],
         },
     }
-    # {
-    #     'BACKEND': 'django.template.backends.jinja2.Jinja2',
-    #     'DIRS': [os.path.join(BASE_DIR, 'jinja2')],
-    #     'APP_DIRS': True,
-    #     'OPTIONS': {
-    #         'context_processors': [
-    #             'django.template.context_processors.debug',
-    #             'django.template.context_processors.request',
-    #             'django.contrib.auth.context_processors.auth',
-    #             'django.contrib.messages.context_processors.messages',
-    #         ],
-    #     },
-    # }
 ]
 
 WSGI_APPLICATION = 'django_mall.wsgi.application'
