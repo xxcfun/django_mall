@@ -30,6 +30,8 @@ class Order(models.Model):
 
     class Meta:
         db_table = 'mine_order'
+        verbose_name = '订单管理'
+        verbose_name_plural = '订单管理'
 
 
 class Cart(models.Model):
@@ -54,6 +56,8 @@ class Cart(models.Model):
 
     class Meta:
         db_table = 'mine_cart'
+        verbose_name = '购物车'
+        verbose_name_plural = '购物车'
 
 
 class Comments(models.Model):
@@ -78,4 +82,5 @@ class Comments(models.Model):
 
     class Meta:
         db_table = 'my_product_comments'
-
+        verbose_name = '商品评论'
+        verbose_name_plural = '商品评论'

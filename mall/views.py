@@ -1,9 +1,10 @@
 from django.db.models import Q
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 from django.views.generic import ListView
 
+from accounts.models import UserAddress
 from mall.models import Product
 from utils import constants
 
@@ -20,9 +21,18 @@ def product_list(request):
     })
 
 
-def product_detail(request, template_name='product_detail.html'):
+def product_detail(request, pk):
     """商品详情"""
-    return render(request, template_name)
+    prod_obj = get_object_or_404(Product, uid=pk, is_valid=True)
+    # 用户的默认地址
+    user = request.user
+    default_addr = None
+    if user.is_authenticated:
+        default_addr = user.default_addr
+    return render(request, 'product_detail.html', {
+        'prod_obj': prod_obj,
+        'default_addr': default_addr
+    })
 
 
 class ProductList(ListView):
@@ -38,10 +48,21 @@ class ProductList(ListView):
         name = self.request.GET.get('name', '')
         if name:
             query = query & Q(name__icontains=name)
+
+        # 按标签进行搜索
+        tag = self.request.GET.get('tag', '')
+        if tag:
+            query = query & Q(tags__code=tag)
+
+        # 按照分类进行搜索
+        cls = self.request.GET.get('cls', '')
+        if cls:
+            query = query & Q(classes__code=cls)
+
         return Product.objects.filter(query)
 
     def get_context_data(self, **kwargs):
         """添加额外的参数，添加搜索参数"""
         context = super().get_context_data(**kwargs)
-        context['search_data'] = self.request.GET.dict()
+        context['params'] = self.request.GET.dict()
         return context

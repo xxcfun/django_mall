@@ -81,7 +81,9 @@
             url: '{% url 'mall:product_load_list' %}',
             data: {
                 page: page,
-                name: '{{ search_data.name }}'
+                name: "{{ params.name|default_if_none:'' }}",
+                cls: "{{ params.cls|default_if_none:'' }}",
+                tag: "{{ params.tag|default_if_none:'' }}"
             },
             success: function (rest) {
                 $('#list').append(rest);

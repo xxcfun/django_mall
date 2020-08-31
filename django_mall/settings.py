@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 富文本编辑器
+    'ckeditor',
+    # 'ckeditor_uploader'
+    # xadmin
     'xadmin',
     'crispy_forms',
     # 'reversion',
@@ -140,3 +144,5 @@ MEDIA_URL = '/medias/'
 # 使用自定义的用户模型
 AUTH_USER_MODEL = 'accounts.User'
 LOGIN_URL = '/accounts/user/login/'
+
+CKEDITOR_UPLOAD_PATH = os.path.join(MEDIA_ROOT, 'uploads')

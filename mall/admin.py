@@ -24,12 +24,14 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Classify)
 class ClassifyAdmin(admin.ModelAdmin):
-    pass
+    """商品分类管理"""
+    list_display = ('parent', 'name', 'code', 'is_valid')
 
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
-    pass
+    """商品标签管理"""
+    list_display = ('name', 'code', 'is_valid')
 
 
 

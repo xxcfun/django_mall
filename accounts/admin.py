@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from django.contrib.auth.admin import UserAdmin
 
-from accounts.models import User
+from accounts.models import User, UserProfile, UserAddress
 
 
 @admin.register(User)
@@ -30,3 +30,19 @@ class UserAdmin(UserAdmin):
         """批量启用选中的用户"""
         queryset.update(is_active=True)
     enable_user.short_description = "批量启用用户"
+
+
+@admin.register(UserProfile)
+class UserProfileAdmin(admin.ModelAdmin):
+    """用户详细信息"""
+    list_display = ('user', 'phone_no', 'sex')
+
+
+@admin.register(UserAddress)
+class UserAddressAdmin(admin.ModelAdmin):
+    """用户地址管理"""
+    list_display = ('user', 'province', 'city',
+                    'username', 'address', 'phone',
+                    'is_valid', 'is_default')
+    search_fields = ('user__username', 'user__nickname',
+                     'username', 'phone')

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from system.models import News, Slider
+from system.models import News, Slider, ImageFile
 from utils.admin_actions import set_invalid, set_valid
 
 
@@ -19,4 +19,6 @@ class SliderAdmin(admin.ModelAdmin):
     actions = [set_valid, set_invalid]
 
 
-
+@admin.register(ImageFile)
+class ImageFileAdmin(admin.ModelAdmin):
+    list_display = ('summary', 'img', 'content_object', 'is_valid')

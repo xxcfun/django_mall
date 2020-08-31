@@ -1,9 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-# Create your models here.
 
 
-# class User(models.Model):
 class User(AbstractUser):
     """用户的基础信息"""
     # username = models.CharField('用户名', max_length=64)
@@ -17,6 +15,27 @@ class User(AbstractUser):
         db_table = 'accounts_user'
         verbose_name = '用户基础信息'
         verbose_name_plural = '用户基础信息'
+
+    @property
+    def default_addr(self):
+        """用户的默认地址，在多个地方用到"""
+        addr = None
+        user_list = self.user_address.filter(is_valid=True)
+        # UserAddress.objects.filter(user=user, is_valid=True)  上面等同于这句
+
+        # 1 找默认地址
+        try:
+            addr = user_list[0]
+        except IndexError:
+            try:
+                addr = user_list[0]
+                # 2 如果没有默认地址，显示所有地址的第一个
+            except IndexError:
+                pass
+        return addr
+
+    def __str__(self):
+        return self.username
 
 
 class UserProfile(models.Model):
@@ -74,6 +93,9 @@ class UserAddress(models.Model):
     def get_region_format(self):
         """省市区"""
         return '{self.province} {self.city} {self.area}'.format(self=self)
+
+    def __str__(self):
+        return self.get_region_format() + self.address
 
 
 class LoginRecord(models.Model):
