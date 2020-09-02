@@ -13,11 +13,7 @@
           class="weui-navbar proinfo-tab-menu"
           style=""
         >
-          <a
-            class="weui-navbar__item proinfo-tab-tit weui-bar__item--on"
-            href="#tab1"
-            >商品</a
-          >
+          <a class="weui-navbar__item proinfo-tab-tit weui-bar__item--on" href="#tab1">商品</a>
           <a class="weui-navbar__item proinfo-tab-tit" href="#tab2">详情</a>
           <a class="weui-navbar__item proinfo-tab-tit" href="#tab3">评价</a>
         </div>
@@ -65,24 +61,24 @@
 {#                </div>#}
 {#              </div>#}
 {#            </div>#}
-            <div class="wy-media-box2 weui-media-box_text">
-              <div class="weui-media-box_appmsg">
-                <div>
-                  <span>请选择购买数量</span>
-                </div>
-                <div class="weui-media-box__bd">
-                  <div class="promotion-sku clear">
-                    <ul>
-                      <li><a href="javascript:;">1</a></li>
-                      <li><a href="javascript:;">2</a></li>
-                      <li><a href="javascript:;">3</a></li>
+{#            <div class="wy-media-box2 weui-media-box_text">#}
+{#              <div class="weui-media-box_appmsg">#}
+{#                <div>#}
+{#                  <span>请选择购买数量</span>#}
+{#                </div>#}
+{#                <div class="weui-media-box__bd">#}
+{#                  <div class="promotion-sku clear">#}
+{#                    <ul>#}
+{#                      <li><a href="javascript:;">1</a></li>#}
+{#                      <li><a href="javascript:;">2</a></li>#}
+{#                      <li><a href="javascript:;">3</a></li>#}
 {#                      <li><a href="javascript:;">40</a></li>#}
 {#                      <li><a href="javascript:;">45</a></li>#}
 {#                      <li><a href="javascript:;">50</a></li>#}
-                    </ul>
-                  </div>
-                </div>
-              </div>
+{#                    </ul>#}
+{#                  </div>#}
+{#                </div>#}
+{#              </div>#}
 {#              <div class="weui-media-box_appmsg">#}
 {#                <div class="weui-media-box__hd proinfo-txt-l">#}
 {#                  <span class="promotion-label-tit">颜色</span>#}
@@ -100,7 +96,7 @@
 {#                  </div>#}
 {#                </div>#}
 {#              </div>#}
-            </div>
+{#            </div>#}
             <div class="wy-media-box2 txtpd weui-media-box_text">
               <div class="weui-media-box_appmsg">
                 <div class="weui-media-box__hd proinfo-txt-l">
@@ -373,7 +369,7 @@
         <div class="weui-tabbar__icon promotion-foot-menu-collection"></div>
         <p class="weui-tabbar__label">收藏</p>
       </a>
-      <a href="shopcart.html" class="promotion-foot-menu-items">
+      <a href="{% url 'mine:cart' %}" class="promotion-foot-menu-items">
         <span
           class="weui-badge"
           style="position: absolute;top: -.4em;right: 1em;"
@@ -384,6 +380,7 @@
       </a>
       <a
         href="javascript:;"
+        id="id_add_cart"
         class="weui-tabbar__item yellow-color open-popup"
         data-target="#join_cart"
       >
@@ -449,42 +446,42 @@
             <div class="wy-media-box2 weui-media-box_text" style="margin:0;">
               <div class="weui-media-box_appmsg">
                 <div class="weui-media-box__hd proinfo-txt-l">
-                  <span class="promotion-label-tit">尺码</span>
+                  <span class="promotion-label-tit">购买数量</span>
                 </div>
                 <div class="weui-media-box__bd">
                   <div class="promotion-sku clear">
                     <ul>
-                      <li><a href="javascript:;">25</a></li>
-                      <li><a href="javascript:;">30</a></li>
-                      <li><a href="javascript:;">34</a></li>
-                      <li><a href="javascript:;">40</a></li>
-                      <li><a href="javascript:;">45</a></li>
-                      <li><a href="javascript:;">50</a></li>
+                      <li><a href="javascript:;">1</a></li>
+                      <li><a href="javascript:;">3</a></li>
+                      <li><a href="javascript:;">5</a></li>
+                      <li><a href="javascript:;">10</a></li>
+{#                      <li><a href="javascript:;">45</a></li>#}
+{#                      <li><a href="javascript:;">50</a></li>#}
                     </ul>
                   </div>
                 </div>
               </div>
-              <div class="weui-media-box_appmsg">
-                <div class="weui-media-box__hd proinfo-txt-l">
-                  <span class="promotion-label-tit">颜色</span>
-                </div>
-                <div class="weui-media-box__bd">
-                  <div class="promotion-sku clear">
-                    <ul>
-                      <li><a href="javascript:;">黑色</a></li>
-                      <li><a href="javascript:;">红色</a></li>
-                      <li><a href="javascript:;">白色</a></li>
-                      <li><a href="javascript:;">蓝色</a></li>
-                      <li><a href="javascript:;">橘黄色</a></li>
-                      <li><a href="javascript:;">绿色</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+{#              <div class="weui-media-box_appmsg">#}
+{#                <div class="weui-media-box__hd proinfo-txt-l">#}
+{#                  <span class="promotion-label-tit">颜色</span>#}
+{#                </div>#}
+{#                <div class="weui-media-box__bd">#}
+{#                  <div class="promotion-sku clear">#}
+{#                    <ul>#}
+{#                      <li><a href="javascript:;">黑色</a></li>#}
+{#                      <li><a href="javascript:;">红色</a></li>#}
+{#                      <li><a href="javascript:;">白色</a></li>#}
+{#                      <li><a href="javascript:;">蓝色</a></li>#}
+{#                      <li><a href="javascript:;">橘黄色</a></li>#}
+{#                      <li><a href="javascript:;">绿色</a></li>#}
+{#                    </ul>#}
+{#                  </div>#}
+{#                </div>#}
+{#              </div>#}
             </div>
             <div class="weui-msg__opr-area">
               <p class="weui-btn-area">
-                <a href="order_info.html" class="weui-btn weui-btn_primary"
+                <a href="../../mine/templates/order_info.html" class="weui-btn weui-btn_primary"
                   >立即购买</a
                 >
                 <a
@@ -587,5 +584,13 @@
         }
         aniHovertree();
       }
+
+      $('#id_add_cart').click(function () {
+        $.post('{% url 'mine:cart_add' prod_obj.uid %}', {
+            count: 1
+        }, function (rest) {
+            alert(rest)
+        })
+      })
     </script>
 {% endblock %}

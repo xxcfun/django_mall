@@ -31,16 +31,19 @@
 
     <script src="/static/lib/jquery-2.1.4.js"></script>
     <script src="/static/lib/fastclick.js"></script>
-    <script type="text/javascript" src="/static/js/jquery.Spinner.js"></script>
+    <script src="/static/js/jquery-weui.js"></script>
     <script>
       $(function() {
         FastClick.attach(document.body);
       });
+      {% if messages %}
+          {% for msg in messages %}
+            $.toptip('{{ msg }}', '{{ msg.tags }}');
+          {% endfor %}
+      {% endif %}
     </script>
-    <script src="/static/js/jquery-weui.js"></script>
-
     {% block footer %}
-    
+    {#    页面底部，用来放新的html片段和新的js#}
     {% endblock %}
   </body>
 </html>

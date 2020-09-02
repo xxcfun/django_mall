@@ -33,12 +33,16 @@ class Order(models.Model):
         verbose_name = '订单管理'
         verbose_name_plural = '订单管理'
 
+    def get_cart_products(self):
+        """购物车中 已下单的商品"""
+        return self.carts.exclude(status=constants.ORDER_STATUS_INIT)
+
 
 class Cart(models.Model):
     """购物车"""
     user = models.ForeignKey(User, related_name='carts')
     product = models.ForeignKey(Product)
-    order = models.ForeignKey(Order, verbose_name='订单', null=True)
+    order = models.ForeignKey(Order, verbose_name='订单', related_name='carts', null=True)
     # 商品快照
     name = models.CharField('商品名称', max_length=128)
     img = models.ImageField('商品的主图')

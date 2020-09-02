@@ -37,4 +37,6 @@ urlpatterns = [
     url(r'^sys/', include('system.urls', namespace='system')),
     # 用户账户模块
     url(r'^accounts/', include('accounts.urls', namespace='accounts')),
+    # 个人中心
+    url(r'^mine/', include('mine.urls', namespace='mine')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

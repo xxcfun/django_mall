@@ -1,9 +1,6 @@
 from datetime import datetime
+from django.shortcuts import render
 
-from django.http import HttpResponse
-from django.shortcuts import render_to_response, render
-
-from accounts.models import User
 from mall.models import Product
 from system.models import Slider, News
 from utils import constants

@@ -5,6 +5,8 @@ from django.db import models
 from ckeditor.fields import RichTextField
 
 # Create your models here.
+from django.db.models import F
+
 from accounts.models import User
 from system.models import ImageFile
 from utils import constants
@@ -91,6 +93,12 @@ class Product(models.Model):
         ordering = ['-reorder']
         verbose_name = '商品信息'
         verbose_name_plural = '商品信息'
+
+    def update_store_count(self, count):
+        """更改商品库存信息"""
+        self.ramain_count = F('ramain_count') - abs(count)
+        self.save()
+        self.refresh_from_db()
 
     def __str__(self):
         return self.name
