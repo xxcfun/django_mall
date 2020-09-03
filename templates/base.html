@@ -36,6 +36,10 @@
       $(function() {
         FastClick.attach(document.body);
       });
+      // 返回事件
+      $(".wy-header-icon-back").click(function () {
+        history.go(-1);
+      })
       {% if messages %}
           {% for msg in messages %}
             $.toptip('{{ msg }}', '{{ msg.tags }}');

@@ -113,13 +113,20 @@
       </div>
       <div class="wy-media-box weui-media-box_text">
         <div class="mg10-0 t-c">
-          总金额：<span class="wy-pro-pri mg-tb-5"
-            >¥<em class="num font-20">{{ object.buy_amount }}</em></span
-          >
+          总金额：
+          <span class="wy-pro-pri mg-tb-5">¥<em class="num font-20">
+            {{ object.buy_amount }}
+          </em></span>
         </div>
+        {% if object.status == constants.ORDER_STATUS_PAIED %}
         <div class="mg10-0">
-          <input class="weui-btn weui-btn_primary" type="submit">积分支付</input>
+          <div class="weui-btn weui-btn_primary">您已支付</div>
         </div>
+        {% else %}
+        <div class="mg10-0">
+          <input class="weui-btn weui-btn_primary" type="submit" value="积分支付">
+        </div>
+        {% endif %}
       </div>
     </form>
 {% endblock %}

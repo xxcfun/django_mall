@@ -14,6 +14,14 @@ class UserAdmin(UserAdmin):
     search_fields = ('username', 'nickname')
     # 添加自定义的方法
     actions = ['disable_user', 'enable_user']
+    fieldsets = (
+        (None, {'fields': ('username', 'password')}),
+        (('Personal info'), {'fields': ('first_name', 'last_name', 'email',
+                                        'integral', 'level', 'nickname')}),
+        (('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
+                                       'groups', 'user_permissions')}),
+        (('Important dates'), {'fields': ('last_login', 'date_joined')}),
+    )
 
     def format_username(self, obj):
         """用户名脱敏处理"""

@@ -1,19 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
+{% extends 'base.html' %}
+{% block title %}
     <title>会员中心</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
-    />
-    <meta name="description" content="" />
-    <link rel="stylesheet" href="lib/weui.min.css" />
-    <link rel="stylesheet" href="css/jquery-weui.css" />
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body ontouchstart class="container">
+{% endblock %}
+
+{% block container %}
     <!--主体-->
     <div class="weui-content">
       <div class="wy-center-top">
@@ -21,7 +11,7 @@
           <div class="weui-media-box__hd">
             <img
               class="weui-media-box__thumb radius"
-              src="upload/headimg.jpg"
+              src="/static/upload/headimg.jpg"
               alt=""
             />
           </div>
@@ -37,13 +27,13 @@
       <div class="weui-panel weui-panel_access">
         <div class="weui-panel__hd">
           <a
-            href="all_orders.html"
+            href="{% url 'mine:order_list' %}"
             class="weui-cell weui-cell_access center-alloder"
           >
             <div class="weui-cell__bd wy-cell">
               <div class="weui-cell__hd">
                 <img
-                  src="images/center-icon-order-all.png"
+                  src="/static/images/center-icon-order-all.png"
                   alt=""
                   class="center-list-icon"
                 />
@@ -58,48 +48,48 @@
         <div class="weui-panel__bd">
           <div class="weui-flex">
             <div class="weui-flex__item">
-              <a href="all_orders.html" class="center-ordersModule">
+              <a href="{% url 'mine:order_list' %}?status={{ constants.ORDER_STATUS_SUBMIT }}" class="center-ordersModule">
                 <span
                   class="weui-badge"
                   style="position: absolute;top:5px;right:10px; font-size:10px;"
                   >2</span
                 >
                 <div class="imgicon">
-                  <img src="images/center-icon-order-dfk.png" />
+                  <img src="/static/images/center-icon-order-dfk.png" />
                 </div>
                 <div class="name">待付款</div>
               </a>
             </div>
             <div class="weui-flex__item">
-              <a href="all_orders.html" class="center-ordersModule">
+              <a href="{% url 'mine:order_list' %}?status={{ constants.ORDER_STATUS_PAIED }}" class="center-ordersModule">
                 <span
                   class="weui-badge"
                   style="position: absolute;top:5px;right:10px; font-size:10px;"
                   >1</span
                 >
                 <div class="imgicon">
-                  <img src="images/center-icon-order-dfh.png" />
+                  <img src="/static/images/center-icon-order-dfh.png" />
                 </div>
                 <div class="name">待发货</div>
               </a>
             </div>
             <div class="weui-flex__item">
-              <a href="all_orders.html" class="center-ordersModule">
+              <a href="{% url 'mine:order_list' %}?status={{ constants.ORDER_STATUS_SENT }}" class="center-ordersModule">
                 <div class="imgicon">
-                  <img src="images/center-icon-order-dsh.png" />
+                  <img src="/static/images/center-icon-order-dsh.png" />
                 </div>
                 <div class="name">待收货</div>
               </a>
             </div>
             <div class="weui-flex__item">
-              <a href="orders.html" class="center-ordersModule">
+              <a href="{% url 'mine:order_list' %}?status={{ constants.ORDER_STATUS_DONE }}" class="center-ordersModule">
                 <span
                   class="weui-badge"
                   style="position: absolute;top:5px;right:10px; font-size:10px;"
                   >2</span
                 >
                 <div class="imgicon">
-                  <img src="images/center-icon-order-dpj.png" />
+                  <img src="/static/images/center-icon-order-dpj.png" />
                 </div>
                 <div class="name">待评价</div>
               </a>
@@ -112,10 +102,10 @@
         <div class="weui-panel__bd">
           <div class="weui-media-box weui-media-box_small-appmsg">
             <div class="weui-cells">
-              <a class="weui-cell weui-cell_access" href="shoucang.html">
+              <a class="weui-cell weui-cell_access" href="{% url 'mine:product_collect' %}">
                 <div class="weui-cell__hd">
                   <img
-                    src="images/center-icon-sc.png"
+                    src="/static/images/center-icon-sc.png"
                     alt=""
                     class="center-list-icon"
                   />
@@ -125,10 +115,10 @@
                 </div>
                 <span class="weui-cell__ft"></span>
               </a>
-              <a class="weui-cell weui-cell_access" href="address_list.html">
+              <a class="weui-cell weui-cell_access" href="{% url 'accounts:address_list' %}">
                 <div class="weui-cell__hd">
                   <img
-                    src="images/center-icon-dz.png"
+                    src="/static/images/center-icon-dz.png"
                     alt=""
                     class="center-list-icon"
                   />
@@ -141,7 +131,7 @@
               <a class="weui-cell weui-cell_access" href="../../accounts/templates/pwd_change.html">
                 <div class="weui-cell__hd">
                   <img
-                    src="images/center-icon-dlmm.png"
+                    src="/static/images/center-icon-dlmm.png"
                     alt=""
                     class="center-list-icon"
                   />
@@ -154,7 +144,7 @@
               <a class="weui-cell weui-cell_access" href="../../accounts/templates/user_login.html">
                 <div class="weui-cell__hd">
                   <img
-                    src="images/center-icon-out.png"
+                    src="/static/images/center-icon-out.png"
                     alt=""
                     class="center-list-icon"
                   />
@@ -169,40 +159,6 @@
         </div>
       </div>
     </div>
-
     <!--底部导航-->
-    <div class="foot-black"></div>
-    <div class="weui-tabbar wy-foot-menu">
-      <a href="../../templates/index.html" class="weui-tabbar__item">
-        <div class="weui-tabbar__icon foot-menu-home"></div>
-        <p class="weui-tabbar__label">首页</p>
-      </a>
-      <a href="../../mall/templates/classify.html" class="weui-tabbar__item">
-        <div class="weui-tabbar__icon foot-menu-list"></div>
-        <p class="weui-tabbar__label">分类</p>
-      </a>
-      <a href="../../mall/templates/shopcart.html" class="weui-tabbar__item">
-        <span
-          class="weui-badge"
-          style="position: absolute;top: -.4em;right: 1em;"
-          >8</span
-        >
-        <div class="weui-tabbar__icon foot-menu-cart"></div>
-        <p class="weui-tabbar__label">购物车</p>
-      </a>
-      <a href="mine.html" class="weui-tabbar__item weui-bar__item--on">
-        <div class="weui-tabbar__icon foot-menu-member"></div>
-        <p class="weui-tabbar__label">我的</p>
-      </a>
-    </div>
-
-    <script src="lib/jquery-2.1.4.js"></script>
-    <script src="lib/fastclick.js"></script>
-    <script>
-      $(function() {
-        FastClick.attach(document.body);
-      });
-    </script>
-    <script src="js/jquery-weui.js"></script>
-  </body>
-</html>
+    {% include 'footer.html' with tab='mine' %}
+{% endblock %}

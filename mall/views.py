@@ -66,3 +66,10 @@ class ProductList(ListView):
         context = super().get_context_data(**kwargs)
         context['params'] = self.request.GET.dict()
         return context
+
+
+def product_classify(request):
+    """商品分类"""
+    return render(request, 'product_classify.html', {
+
+    })

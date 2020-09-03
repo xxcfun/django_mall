@@ -13,4 +13,6 @@ urlpatterns = [
     ), name='product_load_list'),
     # 商品详情
     url(r'^prod/detail/(?P<pk>\S+)/$', views.product_detail, name='product_detail'),
+    # 商品分类
+    url(r'^prod/classify/$', views.product_classify, name='product_classify'),
 ]

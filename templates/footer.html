@@ -1,24 +1,24 @@
 <!--底部导航-->
 <div class="foot-black"></div>
 <div class="weui-tabbar wy-foot-menu">
-  <a href="index.html" class="weui-tabbar__item weui-bar__item--on">
+  <a href="{% url 'index' %}" class="weui-tabbar__item
+    {% if tab == 'index' %}weui-bar__item--on{% endif %}">
     <div class="weui-tabbar__icon foot-menu-home"></div>
     <p class="weui-tabbar__label">首页</p>
   </a>
-  <a href="../mall/templates/classify.html" class="weui-tabbar__item">
+  <a href="{% url 'mall:product_classify' %}" class="weui-tabbar__item
+    {% if tab == 'classify' %}weui-bar__item--on{% endif %}">
     <div class="weui-tabbar__icon foot-menu-list"></div>
     <p class="weui-tabbar__label">分类</p>
   </a>
-  <a href="{% url 'mine:cart' %}" class="weui-tabbar__item">
-        <span
-                class="weui-badge"
-                style="position: absolute;top: -.4em;right: 1em;"
-        >8</span
-        >
+  <a href="{% url 'mine:cart' %}" class="weui-tabbar__item
+    {% if tab == 'cart' %}weui-bar__item--on{% endif %}">
+    <span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">8</span>
     <div class="weui-tabbar__icon foot-menu-cart"></div>
     <p class="weui-tabbar__label">购物车</p>
   </a>
-  <a href="../mine/templates/mine.html" class="weui-tabbar__item">
+  <a href="{% url 'mine:mine' %}" class="weui-tabbar__item
+    {% if tab == 'mine' %}weui-bar__item--on{% endif %}">
     <div class="weui-tabbar__icon foot-menu-member"></div>
     <p class="weui-tabbar__label">我的</p>
   </a>

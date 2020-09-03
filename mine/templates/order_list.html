@@ -1,19 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
+{% extends 'base.html' %}
+{% block title %}
     <title>全部订单</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
-    />
-    <meta name="description" content="" />
-    <link rel="stylesheet" href="lib/weui.min.css" />
-    <link rel="stylesheet" href="css/jquery-weui.css" />
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body ontouchstart class="container">
+{% endblock %}
+
+{% block container %}
     <header class="wy-header wy-header-fixed">
       <div class="wy-header-icon-back"><span></span></div>
       <div class="wy-header-title">订单管理</div>
@@ -24,45 +14,56 @@
           class="weui-navbar bar-fixed"
           style="top:44px; height:44px; background:#fff;"
         >
-          <a
-            class="weui-navbar__item proinfo-tab-tit font-14 weui-bar__item--on"
-            href="#tab1"
-            >全部</a
-          >
-          <a class="weui-navbar__item proinfo-tab-tit font-14" href="#tab2"
+          <a class="weui-navbar__item proinfo-tab-tit font-14
+            {% if status == '' %} weui-bar__item--on {% endif %}"
+            href="{% url 'mine:order_list' %}">
+            全部
+          </a>
+          <a class="weui-navbar__item proinfo-tab-tit font-14
+            {% if status == constants.ORDER_STATUS_SUBMIT %} weui-bar__item--on{% endif %}"
+            href="{% url 'mine:order_list' %}?status={{ constants.ORDER_STATUS_SUBMIT }}"
             >待付款</a
           >
-          <a class="weui-navbar__item proinfo-tab-tit font-14" href="#tab3"
+          <a class="weui-navbar__item proinfo-tab-tit font-14
+           {% if status == constants.ORDER_STATUS_PAIED %} weui-bar__item--on {% endif %}"
+             href="{% url 'mine:order_list' %}?status={{ constants.ORDER_STATUS_PAIED }}"
             >待发货</a
           >
-          <a class="weui-navbar__item proinfo-tab-tit font-14" href="#tab4"
+          <a class="weui-navbar__item proinfo-tab-tit font-14
+           {% if status == constants.ORDER_STATUS_SENT %} weui-bar__item--on {% endif %}"
+             href="{% url 'mine:order_list' %}?status={{ constants.ORDER_STATUS_SENT }}"
             >待收货</a
           >
-          <a class="weui-navbar__item proinfo-tab-tit font-14" href="#tab5"
+          <a class="weui-navbar__item proinfo-tab-tit font-14
+           {% if status == constants.ORDER_STATUS_DONE %} weui-bar__item--on {% endif %}"
+             href="{% url 'mine:order_list' %}?status={{ constants.ORDER_STATUS_DONE }}"
             >待评价</a
           >
         </div>
         <div class="weui-tab__bd proinfo-tab-con" style="padding-top:87px;">
           <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+            {% for order in object_list %}
             <div class="weui-panel weui-panel_access">
               <div class="weui-panel__hd">
-                <span>单号：2132165457654545</span
-                ><span class="ord-status-txt-ts fr">交易成功</span>
+                <span>单号：{{ order.sn }}</span
+                ><span class="ord-status-txt-ts fr">{{ order.get_status_display }}</span>
               </div>
               <div class="weui-media-box__bd  pd-10">
+                {% for item in order.carts.all %}
+                {% with product=item.product %}
                 <div class="weui-media-box_appmsg ord-pro-list">
                   <div class="weui-media-box__hd">
-                    <a href="../../mall/templates/product_detail.html"
+                    <a href="{% url 'mall:product_detail' product.uid  %}"
                       ><img
                         class="weui-media-box__thumb"
-                        src="upload/pro3.jpg"
+                        src="{{ item.img.url }}"
                         alt=""
                     /></a>
                   </div>
                   <div class="weui-media-box__bd">
                     <h1 class="weui-media-box__desc">
-                      <a href="../../mall/templates/product_detail.html" class="ord-pro-link"
-                        >蓝之蓝蓝色瓶装经典Q7浓香型白酒500ml52度高端纯粮食酒2瓶装包邮</a
+                      <a href="{% url 'mall:product_detail' product.uid %}" class="ord-pro-link"
+                        >{{ item.name }}</a
                       >
                     </h1>
                     <p class="weui-media-box__desc">
@@ -74,42 +75,14 @@
                       </div>
                       <div class="pro-amount fr">
                         <span class="font-13"
-                          >数量×<em class="name">1</em></span
+                          >数量×<em class="name">{{ item.count }}</em></span
                         >
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="weui-media-box_appmsg ord-pro-list">
-                  <div class="weui-media-box__hd">
-                    <a href="../../mall/templates/product_detail.html"
-                      ><img
-                        class="weui-media-box__thumb"
-                        src="upload/pro3.jpg"
-                        alt=""
-                    /></a>
-                  </div>
-                  <div class="weui-media-box__bd">
-                    <h1 class="weui-media-box__desc">
-                      <a href="../../mall/templates/product_detail.html" class="ord-pro-link"
-                        >蓝之蓝蓝色瓶装经典Q7浓香型白酒500ml52度高端纯粮食酒2瓶装包邮</a
-                      >
-                    </h1>
-                    <p class="weui-media-box__desc">
-                      规格：<span>红色</span>，<span>23</span>
-                    </p>
-                    <div class="clear mg-t-10">
-                      <div class="wy-pro-pri fl">
-                        ¥<em class="num font-15">296.00</em>
-                      </div>
-                      <div class="pro-amount fr">
-                        <span class="font-13"
-                          >数量×<em class="name">1</em></span
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                {% endwith %}
+                {% endfor %}
               </div>
               <div class="ord-statistics">
                 <span>共<em class="num">2</em>件商品，</span>
@@ -118,69 +91,28 @@
                 >
                 <span>(含运费<b>￥0.00</b>)</span>
               </div>
+
+              {% if order.status == constants.ORDER_STATUS_SUBMIT %}
+              {#订单待付款#}
               <div class="weui-panel__ft">
-                <div
-                  class="weui-cell weui-cell_access weui-cell_link oder-opt-btnbox"
-                >
-                  <a href="javascript:;" class="ords-btn-dele">删除订单</a
-                  ><a href="comment.html" class="ords-btn-com">评价</a>
+                <div class="weui-cell weui-cell_access weui-cell_link oder-opt-btnbox">
+                  <a href="{% url 'mine:order_detail' order.sn %}" class="ords-btn-com">去付款</a>
                 </div>
               </div>
+              {% endif %}
+
+              {#订单已完成#}
+              {% if order.status == constants.ORDER_STATUS_DONE %}
+              <div class="weui-panel__ft">
+                <div class="weui-cell weui-cell_access weui-cell_link oder-opt-btnbox">
+                  <a href="javascript:;" class="ords-btn-dele">删除订单</a>
+                  <a href="comment.html" class="ords-btn-com">去评价</a>
+                </div>
+              </div>
+              {% endif %}
             </div>
 
-            <div class="weui-panel weui-panel_access">
-              <div class="weui-panel__hd">
-                <span>单号：2132165457654545</span
-                ><span class="ord-status-txt-ts fr">交易成功</span>
-              </div>
-              <div class="weui-media-box__bd  pd-10">
-                <div class="weui-media-box_appmsg ord-pro-list">
-                  <div class="weui-media-box__hd">
-                    <a href="../../mall/templates/product_detail.html"
-                      ><img
-                        class="weui-media-box__thumb"
-                        src="upload/pro3.jpg"
-                        alt=""
-                    /></a>
-                  </div>
-                  <div class="weui-media-box__bd">
-                    <h1 class="weui-media-box__desc">
-                      <a href="../../mall/templates/product_detail.html" class="ord-pro-link"
-                        >蓝之蓝蓝色瓶装经典Q7浓香型白酒500ml52度高端纯粮食酒2瓶装包邮</a
-                      >
-                    </h1>
-                    <p class="weui-media-box__desc">
-                      规格：<span>红色</span>，<span>23</span>
-                    </p>
-                    <div class="clear mg-t-10">
-                      <div class="wy-pro-pri fl">
-                        ¥<em class="num font-15">296.00</em>
-                      </div>
-                      <div class="pro-amount fr">
-                        <span class="font-13"
-                          >数量×<em class="name">1</em></span
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="ord-statistics">
-                <span>共<em class="num">1</em>件商品，</span>
-                <span class="wy-pro-pri"
-                  >总金额：¥<em class="num font-15">296.00</em></span
-                >
-                <span>(含运费<b>￥0.00</b>)</span>
-              </div>
-              <div class="weui-panel__ft">
-                <div
-                  class="weui-cell weui-cell_access weui-cell_link oder-opt-btnbox"
-                >
-                  <a href="javascript:;" class="ords-btn-dele">删除订单</a
-                  ><a href="comment.html" class="ords-btn-com">评价</a>
-                </div>
-              </div>
-            </div>
+            {% endfor %}
           </div>
           <div id="tab2" class="weui-tab__bd-item">
             <div class="weui-panel weui-panel_access">
@@ -194,7 +126,7 @@
                     <a href="../../mall/templates/product_detail.html"
                       ><img
                         class="weui-media-box__thumb"
-                        src="upload/pro3.jpg"
+                        src="/static/upload/pro3.jpg"
                         alt=""
                     /></a>
                   </div>
@@ -224,7 +156,7 @@
                     <a href="../../mall/templates/product_detail.html"
                       ><img
                         class="weui-media-box__thumb"
-                        src="upload/pro3.jpg"
+                        src="/static/upload/pro3.jpg"
                         alt=""
                     /></a>
                   </div>
@@ -257,14 +189,7 @@
                 >
                 <span>(含运费<b>￥0.00</b>)</span>
               </div>
-              <div class="weui-panel__ft">
-                <div
-                  class="weui-cell weui-cell_access weui-cell_link oder-opt-btnbox"
-                >
-                  <a href="javascript:;" class="ords-btn-dele">删除订单</a
-                  ><a href="order_info.html" class="ords-btn-com">去付款</a>
-                </div>
-              </div>
+
             </div>
 
             <div class="weui-panel weui-panel_access">
@@ -278,7 +203,7 @@
                     <a href="../../mall/templates/product_detail.html"
                       ><img
                         class="weui-media-box__thumb"
-                        src="upload/pro3.jpg"
+                        src="/static/upload/pro3.jpg"
                         alt=""
                     /></a>
                   </div>
@@ -333,7 +258,7 @@
                     <a href="../../mall/templates/product_detail.html"
                       ><img
                         class="weui-media-box__thumb"
-                        src="upload/pro3.jpg"
+                        src="/static/upload/pro3.jpg"
                         alt=""
                     /></a>
                   </div>
@@ -363,7 +288,7 @@
                     <a href="../../mall/templates/product_detail.html"
                       ><img
                         class="weui-media-box__thumb"
-                        src="upload/pro3.jpg"
+                        src="/static/upload/pro3.jpg"
                         alt=""
                     /></a>
                   </div>
@@ -416,7 +341,7 @@
                     <a href="../../mall/templates/product_detail.html"
                       ><img
                         class="weui-media-box__thumb"
-                        src="upload/pro3.jpg"
+                        src="/static/upload/pro3.jpg"
                         alt=""
                     /></a>
                   </div>
@@ -469,7 +394,7 @@
                     <a href="../../mall/templates/product_detail.html"
                       ><img
                         class="weui-media-box__thumb"
-                        src="upload/pro3.jpg"
+                        src="/static/upload/pro3.jpg"
                         alt=""
                     /></a>
                   </div>
@@ -523,7 +448,7 @@
                     <a href="../../mall/templates/product_detail.html"
                       ><img
                         class="weui-media-box__thumb"
-                        src="upload/pro3.jpg"
+                        src="/static/upload/pro3.jpg"
                         alt=""
                     /></a>
                   </div>
@@ -553,7 +478,7 @@
                     <a href="../../mall/templates/product_detail.html"
                       ><img
                         class="weui-media-box__thumb"
-                        src="upload/pro3.jpg"
+                        src="/static/upload/pro3.jpg"
                         alt=""
                     /></a>
                   </div>
@@ -608,7 +533,7 @@
                     <a href="../../mall/templates/product_detail.html"
                       ><img
                         class="weui-media-box__thumb"
-                        src="upload/pro3.jpg"
+                        src="/static/upload/pro3.jpg"
                         alt=""
                     /></a>
                   </div>
@@ -664,7 +589,7 @@
                     <a href="../../mall/templates/product_detail.html"
                       ><img
                         class="weui-media-box__thumb"
-                        src="upload/pro3.jpg"
+                        src="/static/upload/pro3.jpg"
                         alt=""
                     /></a>
                   </div>
@@ -694,7 +619,7 @@
                     <a href="../../mall/templates/product_detail.html"
                       ><img
                         class="weui-media-box__thumb"
-                        src="upload/pro3.jpg"
+                        src="/static/upload/pro3.jpg"
                         alt=""
                     /></a>
                   </div>
@@ -747,7 +672,7 @@
                     <a href="../../mall/templates/product_detail.html"
                       ><img
                         class="weui-media-box__thumb"
-                        src="upload/pro3.jpg"
+                        src="/static/upload/pro3.jpg"
                         alt=""
                     /></a>
                   </div>
@@ -792,15 +717,9 @@
         </div>
       </div>
     </div>
+{% endblock %}
 
-    <script src="lib/jquery-2.1.4.js"></script>
-    <script src="lib/fastclick.js"></script>
-    <script>
-      $(function() {
-        FastClick.attach(document.body);
-      });
-    </script>
-    <script src="js/jquery-weui.js"></script>
+{% block footer %}
     <script>
       $(document).on('click', '.ords-btn-dele', function() {
         $.confirm(
@@ -818,5 +737,4 @@
         $.alert('五星好评送蓝豆哦，赶快去评价吧！', '收货完成！');
       });
     </script>
-  </body>
-</html>
+{% endblock %}
