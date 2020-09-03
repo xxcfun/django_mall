@@ -8,6 +8,7 @@ from utils import constants
 
 def index(request):
     """首页"""
+    print('request.my_user:', request.my_user)
     # 查询轮播图
     slider_list = Slider.objects.filter(types=constants.SLIDER_TYPE_INDEX)
 

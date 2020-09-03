@@ -13,7 +13,9 @@
   </a>
   <a href="{% url 'mine:cart' %}" class="weui-tabbar__item
     {% if tab == 'cart' %}weui-bar__item--on{% endif %}">
-    <span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">8</span>
+    {% if cart_count > 0 %}
+    <span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">{{ cart_count }}</span>
+    {% endif %}
     <div class="weui-tabbar__icon foot-menu-cart"></div>
     <p class="weui-tabbar__label">购物车</p>
   </a>

@@ -58,6 +58,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'utils.middleware.ip_middleware',
+    'utils.middleware.MallAuthMiddleware'
 ]
 
 ROOT_URLCONF = 'django_mall.urls'
@@ -73,6 +75,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'system.context_processors.const',
+                'mine.context_processors.shop_cart'
             ],
         },
     }

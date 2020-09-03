@@ -35,6 +35,7 @@ def user_login(request):
             user = authenticate(request, username=data['username'], password=data['password'])
             if user is not None:
                 login(request, user)
+                request.session['user_id'] = user.id
                 # 登录后的跳转
 
                 return redirect(next_url)

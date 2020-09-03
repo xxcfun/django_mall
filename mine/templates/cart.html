@@ -74,7 +74,12 @@
       </div>
       <div class="weui-tabbar__item  npd">
         <p class="cart-total-txt">
-          合计：<i>￥</i><em class="num font-16" id="zong1">22222.00</em>
+          合计：<i>￥</i>
+          {% if cart_total is not None %}
+          <em class="num font-16" id="zong1">{{ cart_total.sum_amount }}</em>
+          {% else %}
+          <em class="num font-16" id="zong1">0</em>
+          {% endif %}
         </p>
       </div>
       <button type="submit" class="red-color npd w-90 t-c">
