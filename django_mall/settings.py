@@ -156,7 +156,8 @@ CSRF_USE_SESSIONS = False
 # 邮件发送配置
 EMAIL_HOST = ''  # smtp.qq.com邮箱服务器
 EMAIL_HOST_USER = ''  # 发送邮箱
-EMAIL_HOST_PASSWORD = ''  # 授权码
+EMAIL_HOST_PASSWORD = ''  # 邮箱里面开启的授权码
 
-SERVER_EMAIL = ''  # 接收邮箱
-ADMINS = [('admin', '')]  # 发送邮箱配置
+SERVER_EMAIL = ''  # 那个邮箱要发送
+ADMINS = [('admin', '')]  # 接收邮箱
+# DEBUG 要改为 False  ip那改为’*‘
