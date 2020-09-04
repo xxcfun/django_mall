@@ -11,6 +11,7 @@
       <div class="wy-header-title">手机注册</div>
     </header>
     <form class="weui-content" method="post" action=".">
+      {% csrf_token %}
       <div class="weui-cells weui-cells_form wy-address-edit">
         <!--手机号-->
         <div class="weui-cell weui-cell_vcode">
@@ -120,5 +121,9 @@
     $('.verify-code-img').click(function () {
       $(this).attr('src', $(this).attr('data-src') + '?t=' + new Date().getTime())
     })
-  </script>{% endblock %}
+  </script>
+  <script type="text/javascript">
+    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+  </script>
+{% endblock %}
 

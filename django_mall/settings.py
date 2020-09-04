@@ -54,12 +54,12 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 'utils.middleware.ip_middleware',
-    'utils.middleware.MallAuthMiddleware'
+    # 'utils.middleware.MallAuthMiddleware'
 ]
 
 ROOT_URLCONF = 'django_mall.urls'
@@ -150,3 +150,5 @@ AUTH_USER_MODEL = 'accounts.User'
 LOGIN_URL = '/accounts/user/login/'
 
 CKEDITOR_UPLOAD_PATH = os.path.join(MEDIA_ROOT, 'uploads')
+
+CSRF_USE_SESSIONS = False
