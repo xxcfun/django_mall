@@ -161,3 +161,23 @@ EMAIL_HOST_PASSWORD = ''  # 邮箱里面开启的授权码
 SERVER_EMAIL = ''  # 那个邮箱要发送
 ADMINS = [('admin', '')]  # 接收邮箱
 # DEBUG 要改为 False  ip那改为’*‘
+
+# 日志的配置
+LOGGING = {
+    'version': 1,
+    'disable_existion_loggers': False,
+    'handlers': {
+        'log_file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'log/debug.log'),
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['log_file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}

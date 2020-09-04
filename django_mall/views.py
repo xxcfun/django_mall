@@ -1,13 +1,21 @@
 from datetime import datetime
+import logging
+
 from django.shortcuts import render
 
 from mall.models import Product
 from system.models import Slider, News
 from utils import constants
 
+logger = logging.getLogger('django')
+
 
 def index(request):
     """首页"""
+    # 记录调试信息
+    logger.debug('调试信息')
+    logger.info('普通消息')
+    logger.error('异常')
     # print('request.my_user:', request.my_user)
     # 查询轮播图
     slider_list = Slider.objects.filter(types=constants.SLIDER_TYPE_INDEX)

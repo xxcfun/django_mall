@@ -1,0 +1,44 @@
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.001) SELECT VERSION(); args=None
+(0.007) SHOW FULL TABLES; args=None
+(0.001) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+调试信息
+普通消息
+异常
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.001) SELECT VERSION(); args=None
+(0.001) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'pnodxgevvoawvtlob0o1oxft5krqbbap' AND `django_session`.`expire_date` > '2020-09-04 03:33:32.916002'); args=('pnodxgevvoawvtlob0o1oxft5krqbbap', '2020-09-04 03:33:32.916002')
+(0.002) SELECT `accounts_user`.`id`, `accounts_user`.`password`, `accounts_user`.`last_login`, `accounts_user`.`is_superuser`, `accounts_user`.`username`, `accounts_user`.`first_name`, `accounts_user`.`last_name`, `accounts_user`.`email`, `accounts_user`.`is_staff`, `accounts_user`.`is_active`, `accounts_user`.`date_joined`, `accounts_user`.`nickname`, `accounts_user`.`avatar`, `accounts_user`.`integral`, `accounts_user`.`level` FROM `accounts_user` WHERE `accounts_user`.`id` = 3; args=(3,)
+(0.001) SELECT SUM(`mine_cart`.`amount`) AS `sum_amount`, SUM(`mine_cart`.`count`) AS `sum_count` FROM `mine_cart` WHERE (`mine_cart`.`user_id` = 3 AND `mine_cart`.`status` = 10); args=(3, 10)
+(0.000) SELECT COUNT(*) AS `__count` FROM `mine_cart` WHERE (`mine_cart`.`user_id` = 3 AND `mine_cart`.`status` = 10); args=(3, 10)
+(0.003) SELECT `system_slider`.`id`, `system_slider`.`name`, `system_slider`.`desc`, `system_slider`.`types`, `system_slider`.`img`, `system_slider`.`reorder`, `system_slider`.`start_time`, `system_slider`.`end_time`, `system_slider`.`target_url`, `system_slider`.`is_valid`, `system_slider`.`created_at`, `system_slider`.`updated_at` FROM `system_slider` WHERE `system_slider`.`types` = 11 ORDER BY `system_slider`.`reorder` DESC; args=(11,)
+(0.005) SELECT `system_news`.`id`, `system_news`.`types`, `system_news`.`title`, `system_news`.`content`, `system_news`.`reorder`, `system_news`.`start_time`, `system_news`.`end_time`, `system_news`.`view_count`, `system_news`.`is_top`, `system_news`.`is_valid`, `system_news`.`created_at`, `system_news`.`updated_at` FROM `system_news` WHERE (`system_news`.`types` = 11 AND `system_news`.`is_top` = 1 AND `system_news`.`is_valid` = 1 AND `system_news`.`start_time` <= '2020-09-04 03:33:32.750991' AND `system_news`.`end_time` >= '2020-09-04 03:33:32.750991') ORDER BY `system_news`.`reorder` DESC; args=(11, True, True, '2020-09-04 03:33:32.750991', '2020-09-04 03:33:32.750991')
+(0.006) SELECT `product`.`id`, `product`.`uid`, `product`.`name`, `product`.`desc`, `product`.`content`, `product`.`types`, `product`.`price`, `product`.`origin_price`, `product`.`img`, `product`.`buy_link`, `product`.`reorder`, `product`.`status`, `product`.`sku_count`, `product`.`ramain_count`, `product`.`view_count`, `product`.`score`, `product`.`is_valid`, `product`.`created_at`, `product`.`updated_at` FROM `product` INNER JOIN `product_tags` ON (`product`.`id` = `product_tags`.`product_id`) INNER JOIN `mall_tag` ON (`product_tags`.`tag_id` = `mall_tag`.`id`) WHERE (`product`.`status` = 11 AND `product`.`is_valid` = 1 AND `mall_tag`.`code` = 'jxtj') ORDER BY `product`.`reorder` DESC; args=(11, True, 'jxtj')
+(0.002) SELECT `product`.`id`, `product`.`uid`, `product`.`name`, `product`.`desc`, `product`.`content`, `product`.`types`, `product`.`price`, `product`.`origin_price`, `product`.`img`, `product`.`buy_link`, `product`.`reorder`, `product`.`status`, `product`.`sku_count`, `product`.`ramain_count`, `product`.`view_count`, `product`.`score`, `product`.`is_valid`, `product`.`created_at`, `product`.`updated_at` FROM `product` INNER JOIN `product_tags` ON (`product`.`id` = `product_tags`.`product_id`) INNER JOIN `mall_tag` ON (`product_tags`.`tag_id` = `mall_tag`.`id`) WHERE (`product`.`status` = 11 AND `product`.`is_valid` = 1 AND `mall_tag`.`code` = 'jstj') ORDER BY `product`.`reorder` DESC; args=(11, True, 'jstj')
+"GET / HTTP/1.1" 200 10939
+"GET /static/lib/weui.min.css HTTP/1.1" 200 51383
+"GET /static/css/style.css HTTP/1.1" 200 26376
+"GET /static/css/jquery-weui.css HTTP/1.1" 200 67510
+"GET /static/lib/jquery-2.1.4.js HTTP/1.1" 200 247597
+"GET /static/lib/fastclick.js HTTP/1.1" 200 25965
+"GET /static/upload/ban1.jpg HTTP/1.1" 200 42522
+"GET /static/images/icon-link1.png HTTP/1.1" 200 4919
+"GET /static/js/swiper.js HTTP/1.1" 200 177061
+"GET /static/js/jquery-weui.js HTTP/1.1" 200 201034
+"GET /static/images/icon-link2.png HTTP/1.1" 200 5016
+"GET /static/images/icon-link3.png HTTP/1.1" 200 3956
+"GET /static/images/icon-link4.png HTTP/1.1" 200 5870
+"GET /medias/201902/product/e0.jpg HTTP/1.1" 200 49341
+"GET /medias/201902/product/g0.jpg HTTP/1.1" 200 37963
+"GET /static/upload/pro2.jpg HTTP/1.1" 200 25002
+"GET /static/upload/pro1.jpg HTTP/1.1" 200 50929
+"GET /static/upload/pro3.jpg HTTP/1.1" 200 11718
+"GET /static/upload/pro4.jpg HTTP/1.1" 200 10974
+"GET /static/upload/pro5.jpg HTTP/1.1" 200 15131
+"GET /static/images/news-icon.png HTTP/1.1" 200 1579
+"GET /static/images/icon-more.png HTTP/1.1" 200 1139
+"GET /static/images/footer001.png HTTP/1.1" 200 1907
+"GET /static/images/footer02.png HTTP/1.1" 200 987
+"GET /static/images/footer03.png HTTP/1.1" 200 1912
+"GET /static/images/footer04.png HTTP/1.1" 200 2601
+"GET /static/js/maps/swiper.jquery.js.map HTTP/1.1" 404 1697
