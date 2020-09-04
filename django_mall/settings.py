@@ -152,3 +152,11 @@ LOGIN_URL = '/accounts/user/login/'
 CKEDITOR_UPLOAD_PATH = os.path.join(MEDIA_ROOT, 'uploads')
 
 CSRF_USE_SESSIONS = False
+
+# 邮件发送配置
+EMAIL_HOST = ''  # smtp.qq.com邮箱服务器
+EMAIL_HOST_USER = ''  # 发送邮箱
+EMAIL_HOST_PASSWORD = ''  # 授权码
+
+SERVER_EMAIL = ''  # 接收邮箱
+ADMINS = [('admin', '')]  # 发送邮箱配置
