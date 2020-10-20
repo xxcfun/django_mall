@@ -15,5 +15,5 @@ urlpatterns = [
     # user/address/edit/add/   user/address/edit/11/
     url(r'^user/address/edit/(?P<pk>\S+)/$', views.address_edit, name='address_edit'),
     # 地址的删除
-    url(r'^user/address/delete/(?P<pk>\d+)/$', views.address_delete, name='address_delete'),
+    # url(r'^user/address/delete/(?P<pk>\d+)/$', views.address_delete, name='address_delete'),
 ]

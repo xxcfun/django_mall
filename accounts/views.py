@@ -102,9 +102,9 @@ def address_edit(request, pk):
     })
 
 
-def address_delete(request, pk):
-    """删除地址"""
-    addr = get_object_or_404(UserAddress, pk=pk, user=request.user, is_valid=True)
-    addr.is_valid = False
-    addr.save()
-    return HttpResponse('ok')
+# def address_delete(request, pk):
+#     """删除地址"""
+#     addr = get_object_or_404(UserAddress, pk=pk, user=request.user, is_valid=True)
+#     addr.is_valid = False
+#     addr.save()
+#     return HttpResponse('ok')

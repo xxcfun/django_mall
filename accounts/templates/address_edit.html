@@ -82,7 +82,7 @@
         </div>
         <div class="weui-btn-area">
             <input class="weui-btn weui-btn_primary" type="submit" value="保存此地址">
-            <a href="javascript:;" id="id_delete_addr" class="weui-btn weui-btn_warn">删除此地址</a>
+{#            <a href="javascript:;" id="id_delete_addr" class="weui-btn weui-btn_warn">删除此地址</a>#}
         </div>
     </form>
 
@@ -97,15 +97,15 @@
                 console.log(values, displayValues);
             }
         });
-        $('#id_delete_addr').click(function () {
+        {#$('#id_delete_addr').click(function () {#}
             {# 弹框确认 #}
-            if (window.confirm('确认删除该地址吗')) {
-                $.post("{% url 'accounts:address_delete' form.instance.id %}", function (rest) {
-                    if (rest === 'ok') {
-                        window.location.href = "{% url 'accounts:address_list' %}";
-                    }
-                })
-            }
-        })
+        {#    if (window.confirm('确认删除该地址吗')) {#}
+        {#        $.post("{% url 'accounts:address_delete' form.instance.id %}", function (rest) {#}
+        {#            if (rest === 'ok') {#}
+        {#                window.location.href = "{% url 'accounts:address_list' %}";#}
+        {#            }#}
+        {#        })#}
+        {#    }#}
+        {#})#}
     </script>
 {% endblock %}
